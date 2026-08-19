@@ -75,6 +75,7 @@ Studio em `http://localhost:54323`. Consulte o passo a passo completo em
 - [Autenticação e segurança](./docs/authentication.md)
 - [Contrato da API](./docs/api.md)
 - [Desenvolvimento local](./docs/local-development.md)
+- [Primeiros passos no Supabase](./docs/supabase-first-setup.md)
 - [Implantação](./docs/deployment.md)
 - [Decisão da stack](./docs/decisions/001-technology-stack.md)
 

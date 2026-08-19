@@ -19,6 +19,11 @@ npx supabase db push
 Antes do push, confirme que o projeto selecionado é o ambiente correto. Não use
 `db reset` em um projeto remoto.
 
+Use somente chaves no formato `sb_publishable_...` na aplicação. Depois de
+confirmar que nenhum componente utiliza chaves JWT antigas, desative `anon` e
+`service_role` legadas em **Settings → API Keys**. O projeto não utiliza secret
+key nas rotas atuais.
+
 ## 2. Configurar autenticação
 
 Defina a URL pública do site e os redirects permitidos. Para o teste controlado,
