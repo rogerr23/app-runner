@@ -46,17 +46,8 @@ export async function POST(request: Request) {
     }
     if (error) throw error;
 
-    if (input.plannedRunId) {
-      const { error: planError } = await supabase
-        .from("planned_runs")
-        .update({ status: "completed" })
-        .eq("id", input.plannedRunId);
-      if (planError) throw planError;
-    }
-
     return NextResponse.json({ data }, { status: 201 });
   } catch (error) {
     return errorResponse(error);
   }
 }
-

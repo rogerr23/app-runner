@@ -108,6 +108,11 @@ create table public.goals (
   updated_at timestamptz not null default now(),
   constraint goal_deadline_is_valid check (
     deadline is null or deadline >= starts_on
+  ),
+  constraint goal_kind_matches_unit check (
+    (kind in ('weekly_distance', 'event_distance') and unit = 'km')
+    or (kind = 'weekly_frequency' and unit = 'runs')
+    or (kind = 'target_pace' and unit = 'seconds_per_km')
   )
 );
 
@@ -146,6 +151,27 @@ create trigger goals_set_updated_at
 before update on public.goals
 for each row execute function public.set_updated_at();
 
+create function public.complete_linked_plan()
+returns trigger
+language plpgsql
+security invoker
+set search_path = ''
+as $$
+begin
+  if new.planned_run_id is not null then
+    update public.planned_runs
+    set status = 'completed'
+    where id = new.planned_run_id
+      and user_id = new.user_id;
+  end if;
+  return new;
+end;
+$$;
+
+create trigger runs_complete_linked_plan
+after insert on public.runs
+for each row execute function public.complete_linked_plan();
+
 create function public.handle_new_user()
 returns trigger
 language plpgsql
@@ -156,9 +182,19 @@ begin
   insert into public.profiles (id, display_name)
   values (
     new.id,
-    coalesce(
-      nullif(trim(new.raw_user_meta_data ->> 'display_name'), ''),
-      split_part(coalesce(new.email, 'runner'), '@', 1)
+    left(
+      case
+        when char_length(coalesce(
+          nullif(trim(new.raw_user_meta_data ->> 'display_name'), ''),
+          split_part(coalesce(new.email, ''), '@', 1)
+        )) >= 2
+        then coalesce(
+          nullif(trim(new.raw_user_meta_data ->> 'display_name'), ''),
+          split_part(new.email, '@', 1)
+        )
+        else 'Runner'
+      end,
+      80
     )
   );
   return new;
@@ -278,4 +314,3 @@ grant select, update on public.profiles to authenticated;
 grant select, insert, update, delete on public.planned_runs to authenticated;
 grant select, insert, update, delete on public.runs to authenticated;
 grant select, insert, update, delete on public.goals to authenticated;
-

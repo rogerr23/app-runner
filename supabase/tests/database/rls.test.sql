@@ -1,6 +1,6 @@
 begin;
 
-select plan(5);
+select plan(7);
 
 insert into auth.users (id, email, raw_user_meta_data)
 values
@@ -90,6 +90,16 @@ select lives_ok(
   'a user can record a run against their own plan'
 );
 
+select is(
+  (
+    select status::text
+    from public.planned_runs
+    where id = '10000000-0000-0000-0000-000000000099'
+  ),
+  'completed',
+  'recording a run completes the linked plan atomically'
+);
+
 select throws_ok(
   $$
     insert into public.runs (
@@ -109,6 +119,27 @@ select throws_ok(
   '42501',
   'new row violates row-level security policy for table "runs"',
   'a user cannot attach a run to another user plan'
+);
+
+select throws_ok(
+  $$
+    insert into public.goals (
+      user_id,
+      kind,
+      title,
+      target_value,
+      unit
+    ) values (
+      '10000000-0000-0000-0000-000000000001',
+      'weekly_frequency',
+      'Correr três vezes',
+      3,
+      'km'
+    )
+  $$,
+  '23514',
+  'new row for relation "goals" violates check constraint "goal_kind_matches_unit"',
+  'a goal kind must use its corresponding unit'
 );
 
 select * from finish();

@@ -11,7 +11,7 @@ export const runTypes = [
   "other",
 ] as const;
 
-export const createRunSchema = z.object({
+const runFieldsSchema = z.object({
   plannedRunId: z.uuid().nullable().optional(),
   performedAt: z.iso.datetime({ offset: true }),
   runType: z.enum(runTypes).default("easy"),
@@ -21,8 +21,16 @@ export const createRunSchema = z.object({
   notes: z.string().trim().max(1000).nullable().optional(),
 });
 
+export const createRunSchema = runFieldsSchema;
+
+export const updateRunSchema = runFieldsSchema
+  .omit({ plannedRunId: true })
+  .partial()
+  .refine((value) => Object.keys(value).length > 0, {
+    message: "Informe ao menos um campo para atualizar.",
+  });
+
 export const listRunsQuerySchema = z.object({
   limit: z.coerce.number().int().min(1).max(100).default(20),
   offset: z.coerce.number().int().min(0).default(0),
 });
-
