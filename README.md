@@ -1,55 +1,104 @@
 # App Runner
 
-Aplicação web mobile-first para pessoas que correm ou querem começar a correr.
-O projeto busca oferecer uma experiência simples para planejar treinos, registrar
-corridas e acompanhar a evolução ao longo do tempo.
+Aplicação web mobile-first para quem corre ou quer começar a correr. O produto
+oferece um caminho simples para planejar treinos, registrar atividades e
+acompanhar metas sem exigir relógio esportivo ou rastreamento por GPS.
 
-## Objetivo
+O projeto está na fase de MVP privado, inicialmente pensado para três pessoas.
 
-O primeiro marco é um MVP funcional para validação com um pequeno grupo de
-usuários. A experiência principal deve permitir:
+## O que já existe
 
-- criar uma conta e definir um perfil de corredor;
-- planejar corridas e treinos;
-- registrar distância, duração e percepção de esforço;
-- consultar o histórico de atividades;
-- acompanhar metas e indicadores básicos de evolução.
+- cadastro, login e logout com sessão em cookie;
+- perfil automático para cada novo usuário;
+- planejamento de corridas;
+- registro e histórico de corridas;
+- cálculo automático do ritmo médio pelo banco;
+- criação e acompanhamento de metas;
+- isolamento de dados por usuário com Row Level Security;
+- ambiente Supabase local reproduzível com Docker;
+- validação de entrada, testes unitários e testes de segurança do banco;
+- API HTTP pronta para receber a interface mobile-first.
 
-Funcionalidades mais complexas, como GPS em tempo real, integrações com relógios,
-feed social e pagamentos, não fazem parte da primeira versão.
+GPS em tempo real, integrações com relógios, feed social e pagamentos estão fora
+do primeiro MVP.
 
-## Stack planejada
+## Tecnologias
 
-- **Next.js e TypeScript:** aplicação web e camada de backend;
-- **Supabase:** PostgreSQL, autenticação e políticas de acesso aos dados;
-- **Tailwind CSS:** interface responsiva e orientada a dispositivos móveis;
-- **Vercel:** hospedagem do protótipo;
-- **Vitest e Playwright:** testes automatizados.
+- **Next.js 16, React 19 e TypeScript:** aplicação e API;
+- **Supabase:** PostgreSQL 17, autenticação e Data API;
+- **Zod:** validação dos contratos HTTP;
+- **Vitest e pgTAP:** testes de aplicação e banco;
+- **Vercel:** hospedagem planejada para o protótipo.
 
-A infraestrutura inicial será compatível com os planos gratuitos dos serviços,
-considerando o uso pessoal e não comercial do protótipo.
+As versões são fixadas no `package-lock.json` para que instalações sejam
+reproduzíveis.
 
-## Arquitetura e documentação
+## Início rápido
 
-As decisões e instruções técnicas serão documentadas progressivamente em
-[`docs/`](./docs). O banco será versionado por migrations, permitindo reproduzir
-o ambiente sem depender de alterações manuais em painéis administrativos.
+Pré-requisitos: Node.js 22 ou superior e Docker Desktop em execução.
 
-Nenhuma credencial deve ser adicionada ao repositório. Variáveis necessárias
-serão apresentadas em um arquivo `.env.example`.
+```bash
+npm install
+npm run db:start
+npm run db:status
+cp .env.example .env.local
+```
 
-## Desenvolvimento
+Copie `API_URL` para `NEXT_PUBLIC_SUPABASE_URL` e `PUBLISHABLE_KEY` para
+`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` no `.env.local`. Depois execute:
 
-O desenvolvimento acontece na branch `develop`. A branch `main` representa a
-versão estável e deve receber alterações por Pull Request.
+```bash
+npm run dev
+```
 
-As instruções completas de configuração local serão adicionadas junto com a
-fundação técnica do projeto.
+A aplicação estará em `http://localhost:3000`, a API em `/api` e o Supabase
+Studio em `http://localhost:54323`. Consulte o passo a passo completo em
+[`docs/local-development.md`](./docs/local-development.md).
 
-## Status
+## Comandos principais
 
-Em preparação: estrutura inicial, banco de dados, autenticação e documentação.
+| Comando | Finalidade |
+| --- | --- |
+| `npm run dev` | Inicia o Next.js em desenvolvimento |
+| `npm run check` | Executa lint, tipos e testes unitários |
+| `npm run build` | Gera o build de produção |
+| `npm run db:start` | Inicia o Supabase local |
+| `npm run db:reset` | Recria o banco aplicando migrations e seed |
+| `npm run db:lint` | Analisa o schema PostgreSQL |
+| `npm run db:test` | Testa constraints e políticas RLS |
+| `npm run db:types` | Regera tipos TypeScript a partir do banco |
+
+## Documentação
+
+- [Arquitetura](./docs/architecture.md)
+- [Banco de dados](./docs/database.md)
+- [Autenticação e segurança](./docs/authentication.md)
+- [Contrato da API](./docs/api.md)
+- [Desenvolvimento local](./docs/local-development.md)
+- [Implantação](./docs/deployment.md)
+- [Decisão da stack](./docs/decisions/001-technology-stack.md)
+
+## Fluxo Git
+
+O trabalho acontece na branch `develop`. A `main` representa a versão estável e
+deve receber mudanças por Pull Request. Commits seguem, sempre que possível, o
+padrão Conventional Commits (`feat:`, `fix:`, `docs:`, `test:` e `chore:`).
+
+## Custos do protótipo
+
+O uso privado por três pessoas cabe nos planos gratuitos do Supabase e, quando
+for pessoal e não comercial, da Vercel. Um domínio próprio é opcional. Projetos
+Supabase gratuitos podem ser pausados após baixa atividade; os limites e termos
+dos provedores devem ser revistos antes de uso público ou comercial.
+
+## Segurança
+
+Nunca adicione `.env.local`, secret keys ou senhas ao Git. A publishable key do
+Supabase pode chegar ao navegador porque as tabelas públicas são protegidas por
+RLS. A secret key ignora essas políticas e deve permanecer exclusivamente no
+servidor.
 
 ## Licença
 
-Ainda não definida.
+Ainda não definida. Até que uma licença seja adicionada, o código não deve ser
+considerado liberado para redistribuição.
