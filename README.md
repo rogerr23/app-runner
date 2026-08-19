@@ -6,6 +6,8 @@ acompanhar metas sem exigir relógio esportivo ou rastreamento por GPS.
 
 O projeto está na fase de MVP privado, inicialmente pensado para três pessoas.
 
+Ambiente publicado: [app-runner.vercel.app](https://app-runner.vercel.app)
+
 ## O que já existe
 
 - cadastro, login e logout com sessão em cookie;
@@ -28,7 +30,7 @@ do primeiro MVP.
 - **Supabase:** PostgreSQL 17, autenticação e Data API;
 - **Zod:** validação dos contratos HTTP;
 - **Vitest e pgTAP:** testes de aplicação e banco;
-- **Vercel:** hospedagem planejada para o protótipo.
+- **Vercel:** hospedagem do protótipo.
 
 As versões são fixadas no `package-lock.json` para que instalações sejam
 reproduzíveis.
@@ -75,6 +77,7 @@ Studio em `http://localhost:54323`. Consulte o passo a passo completo em
 - [Autenticação e segurança](./docs/authentication.md)
 - [Contrato da API](./docs/api.md)
 - [Desenvolvimento local](./docs/local-development.md)
+- [Ambientes](./docs/environments.md)
 - [Primeiros passos no Supabase](./docs/supabase-first-setup.md)
 - [Implantação](./docs/deployment.md)
 - [Decisão da stack](./docs/decisions/001-technology-stack.md)

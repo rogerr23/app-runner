@@ -1,7 +1,8 @@
 # Implantação
 
-Este documento descreve o caminho planejado para o protótipo. A implantação não
-é automática nesta fase para evitar alterações remotas acidentais.
+Este documento descreve o processo do protótipo. A implantação inicial está em
+`https://app-runner.vercel.app`, mas ainda não é disparada automaticamente pelo
+GitHub.
 
 ## 1. Criar o projeto Supabase
 
