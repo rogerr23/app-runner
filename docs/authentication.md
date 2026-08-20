@@ -17,13 +17,15 @@ para a internet. A caixa local fica em `http://localhost:54324`.
 
 ## Protótipo hospedado
 
-Para três contas privadas, há duas alternativas:
+Para o teste privado atual, o cadastro está habilitado e a confirmação de e-mail
+está desabilitada. Isso permite que as três pessoas criem suas contas e entrem
+imediatamente. O endereço não deve ser divulgado amplamente enquanto essa
+configuração estiver ativa.
 
-- criar as contas em uma sessão controlada e manter confirmação desabilitada;
-- configurar SMTP próprio e habilitar confirmação de e-mail.
-
-O provedor de e-mail padrão do Supabase possui limites baixos e não deve ser
-tratado como infraestrutura de produção.
+Antes de abrir o Pista ao público, é necessário configurar um serviço SMTP
+próprio, habilitar a confirmação de e-mail e testar os fluxos de confirmação e
+recuperação de senha. O provedor de e-mail padrão do Supabase possui limites
+baixos e não deve ser tratado como infraestrutura de produção.
 
 ## Chaves
 

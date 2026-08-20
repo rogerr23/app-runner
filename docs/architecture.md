@@ -2,7 +2,7 @@
 
 ## Visão geral
 
-O App Runner usa uma arquitetura web full-stack. O Next.js entrega a interface e
+O Pista usa uma arquitetura web full-stack. O Next.js entrega a interface e
 expõe Route Handlers em `/api`. Esses handlers validam a entrada e acessam o
 Supabase em nome do usuário autenticado. O PostgreSQL mantém os dados e aplica a
 autorização final com Row Level Security (RLS).

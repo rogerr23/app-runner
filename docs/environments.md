@@ -39,10 +39,10 @@ necessária. As chaves legadas do Supabase estão desativadas.
 
 ## Promoção e deploy
 
-A aplicação foi publicada inicialmente pelo Vercel CLI. Até a integração GitHub
-ser ativada na conta Vercel, novos deployments precisam ser iniciados
-explicitamente. A branch `main` continua sendo a referência estável; o trabalho
-é desenvolvido e validado na `develop`.
+A aplicação é publicada pelo Vercel CLI a partir do conteúdo validado na
+`develop`. Até a integração GitHub ser ativada na conta Vercel, novos deployments
+precisam ser iniciados explicitamente. A branch `main` continua sendo a
+referência estável e não recebe pushes diretos.
 
 Ao habilitar a integração GitHub, configure `main` como branch de produção e use
 deployments de Preview para `develop` e Pull Requests.

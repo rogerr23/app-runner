@@ -74,6 +74,7 @@ Studio em `http://localhost:54323`. Consulte o passo a passo completo em
 
 ## Documentação
 
+- [Visão geral do produto](./docs/product.md) — apresentação sem termos técnicos
 - [Arquitetura](./docs/architecture.md)
 - [Banco de dados](./docs/database.md)
 - [Autenticação e segurança](./docs/authentication.md)
@@ -95,8 +96,11 @@ padrão Conventional Commits (`feat:`, `fix:`, `docs:`, `test:` e `chore:`).
 
 O uso privado por três pessoas cabe nos planos gratuitos do Supabase e, quando
 for pessoal e não comercial, da Vercel. Um domínio próprio é opcional. Projetos
-Supabase gratuitos podem ser pausados após baixa atividade; os limites e termos
-dos provedores devem ser revistos antes de uso público ou comercial.
+Supabase gratuitos com pouca atividade podem ser pausados após uma semana; os
+limites e termos dos provedores devem ser revistos antes de uso público ou
+comercial. Consulte as páginas oficiais dos planos
+[Supabase Free](https://supabase.com/pricing) e
+[Vercel Hobby](https://vercel.com/docs/plans/hobby).
 
 ## Segurança
 

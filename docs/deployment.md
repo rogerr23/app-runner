@@ -1,8 +1,8 @@
 # Implantação
 
-Este documento descreve o processo do protótipo. A implantação inicial está em
-`https://app-runner.vercel.app`, mas ainda não é disparada automaticamente pelo
-GitHub.
+Este documento descreve o processo do protótipo. A versão atual está em
+`https://app-runner.vercel.app`. Como a integração com o GitHub ainda não está
+ativa, os deployments são iniciados manualmente pelo Vercel CLI.
 
 ## 1. Criar o projeto Supabase
 
@@ -27,9 +27,9 @@ key nas rotas atuais.
 
 ## 2. Configurar autenticação
 
-Defina a URL pública do site e os redirects permitidos. Para o teste controlado,
-decida conscientemente se a confirmação de e-mail ficará desligada. Para uso
-público, configure SMTP e habilite a confirmação.
+Defina a URL pública do site e os redirects permitidos. No teste privado atual,
+a confirmação de e-mail está desligada. Para uso público, configure SMTP,
+habilite a confirmação e teste também a recuperação de senha.
 
 ## 3. Configurar a aplicação
 
@@ -46,12 +46,18 @@ existir uma operação administrativa concreta e exclusivamente server-side.
 
 ## 4. Publicar
 
-Conecte o repositório à Vercel e use a `main` como branch de produção. A branch
-`develop` pode gerar previews. A promoção para produção deve acontecer por Pull
-Request após os checks.
+No fluxo atual, as mudanças são desenvolvidas e verificadas na `develop`,
+enviadas ao GitHub e publicadas manualmente pelo Vercel CLI. A `main` permanece
+sem alterações diretas.
+
+O fluxo desejado para a próxima etapa é conectar o repositório à Vercel, usar a
+`main` como branch de produção e gerar previews para a `develop` e Pull Requests.
+Depois disso, a promoção para produção deverá acontecer por Pull Request após os
+checks.
 
 O plano Hobby da Vercel é destinado a uso pessoal e não comercial. Reavalie o
-plano ou o provedor antes de exploração comercial.
+plano ou o provedor antes de exploração comercial. A referência atual é a
+[documentação oficial do plano Hobby](https://vercel.com/docs/plans/hobby).
 
 ## 5. Verificar
 

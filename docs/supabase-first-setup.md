@@ -6,7 +6,10 @@ parte do banco continua sendo gerenciada por código e migrations.
 ## Project Overview
 
 Mostra o estado do projeto e atalhos de conexão. No plano gratuito, um projeto
-com baixa atividade pode ser pausado. Ele pode ser reativado pelo próprio painel.
+com pouca atividade pode ser pausado após uma semana. Ele pode ser reativado
+pelo próprio painel. Consulte a
+[documentação oficial de pausa](https://supabase.com/docs/guides/platform/free-project-pausing)
+antes de depender do ambiente para uma demonstração importante.
 
 ## Table Editor
 
