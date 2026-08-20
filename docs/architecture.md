@@ -59,7 +59,10 @@ explicitamente na migration, e cada tabela pública tem RLS habilitada.
 ## Organização do código
 
 ```text
+src/app/page.tsx         interface mobile-first e estado do cliente
+src/app/globals.css      sistema visual e layouts responsivos
 src/app/api/             endpoints HTTP
+public/                  ativos públicos e imagem de compartilhamento
 src/lib/api/             autenticação e tratamento de erros
 src/lib/supabase/        cliente SSR e tipos gerados
 src/lib/validation/      schemas de entrada e testes
@@ -70,7 +73,8 @@ docs/                    documentação por assunto
 
 ## Evolução prevista
 
-A interface reutilizará os endpoints existentes. Funcionalidades que exijam
-operações atômicas mais complexas podem ser implementadas como funções SQL e
-chamadas via RPC. Integrações externas devem ficar no servidor e usar variáveis
-de ambiente próprias.
+A interface consome apenas os Route Handlers, mantendo o Supabase fora dos
+componentes de tela. Funcionalidades que exijam operações atômicas mais
+complexas podem ser implementadas como funções SQL e chamadas via RPC.
+Integrações externas devem ficar no servidor e usar variáveis de ambiente
+próprias.

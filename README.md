@@ -1,4 +1,4 @@
-# App Runner
+# Pista
 
 Aplicação web mobile-first para quem corre ou quer começar a correr. O produto
 oferece um caminho simples para planejar treinos, registrar atividades e
@@ -11,6 +11,7 @@ Ambiente publicado: [app-runner.vercel.app](https://app-runner.vercel.app)
 ## O que já existe
 
 - cadastro, login e logout com sessão em cookie;
+- interface mobile-first responsiva, com navegação também adaptada ao desktop;
 - perfil automático para cada novo usuário;
 - planejamento de corridas;
 - registro e histórico de corridas;
@@ -19,7 +20,7 @@ Ambiente publicado: [app-runner.vercel.app](https://app-runner.vercel.app)
 - isolamento de dados por usuário com Row Level Security;
 - ambiente Supabase local reproduzível com Docker;
 - validação de entrada, testes unitários e testes de segurança do banco;
-- API HTTP pronta para receber a interface mobile-first.
+- painel semanal com distância, frequência, tempo e próximo treino.
 
 GPS em tempo real, integrações com relógios, feed social e pagamentos estão fora
 do primeiro MVP.
@@ -27,6 +28,7 @@ do primeiro MVP.
 ## Tecnologias
 
 - **Next.js 16, React 19 e TypeScript:** aplicação e API;
+- **Lucide:** ícones da interface;
 - **Supabase:** PostgreSQL 17, autenticação e Data API;
 - **Zod:** validação dos contratos HTTP;
 - **Vitest e pgTAP:** testes de aplicação e banco;
@@ -76,6 +78,7 @@ Studio em `http://localhost:54323`. Consulte o passo a passo completo em
 - [Banco de dados](./docs/database.md)
 - [Autenticação e segurança](./docs/authentication.md)
 - [Contrato da API](./docs/api.md)
+- [Interface e fluxos](./docs/interface.md)
 - [Desenvolvimento local](./docs/local-development.md)
 - [Ambientes](./docs/environments.md)
 - [Primeiros passos no Supabase](./docs/supabase-first-setup.md)
