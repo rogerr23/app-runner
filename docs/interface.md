@@ -35,12 +35,12 @@ Erros normalizados pela API são exibidos na própria interface.
 
 ## Sistema visual
 
-O projeto usa uma paleta curta: verde floresta para estrutura e confiança,
-verde-limão para progresso e ação, coral para destaques e um fundo em tom de
-papel. Os ícones são do Lucide e a tipografia usa uma pilha de fontes do sistema,
-evitando downloads adicionais.
+O projeto usa uma paleta curta: violeta escuro para estrutura e profundidade,
+ciano para as ações, acqua para progresso e destaques e um fundo azul-gelo. Os
+ícones são do Lucide e a tipografia usa uma pilha de fontes do sistema, evitando
+downloads adicionais.
 
-A imagem `public/pista-social.png` é usada somente em previews de
+A imagem `public/pista-social-v2.png` é usada somente em previews de
 compartilhamento Open Graph e Twitter. Ela foi gerada com o recurso integrado de
 geração de imagens, usando a mesma direção de arte da interface.
 
